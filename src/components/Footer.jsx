@@ -8,7 +8,7 @@ export default function Footer() {
           
           {/* Marca e Descrição */}
           <div className="space-y-6">
-            <img src="/assets/logo_branco_cor.webp" alt="Grupo Protec Desentupidora" loading="lazy" className="h-16" />
+            <img src="src/assets/imagens/logo_branco_cor.webp" alt="Grupo Protec Desentupidora" loading="lazy" className="h-16" />
             <p className="text-sm leading-relaxed text-gray-400">
               Há mais de 15 anos oferecendo excelência em serviços hidrossanitários. Atendimento 24 horas rápido, limpo e com equipamentos modernos.
             </p>

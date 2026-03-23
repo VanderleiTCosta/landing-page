@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom'; // useLocation ADICIONADO
+import { Menu, X, ChevronDown, PhoneCall } from 'lucide-react';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  
+  // 1. O REACT LÊ A URL ATUAL
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -12,6 +16,17 @@ export default function Header() {
   }, []);
 
   const whatsappLink = "https://wa.me/5511940103334";
+
+  // ==========================================
+  // 2. LÓGICA DE DETEÇÃO DO BAIRRO ATUAL
+  // ==========================================
+  let bairroAtual = "morumbi"; // Bairro padrão caso esteja na página inicial
+  
+  // Se a URL tiver "-em-", o sistema corta e guarda apenas o nome do bairro
+  const match = location.pathname.match(/-em-([a-z0-9-]+)$/);
+  if (match) {
+    bairroAtual = match[1];
+  }
 
   return (
     <header 
@@ -22,21 +37,20 @@ export default function Header() {
       <div className="container mx-auto px-4 max-w-7xl flex items-center justify-between">
         
         {/* Logo Otimizada */}
-        <a href="/" aria-label="Página inicial Grupo Protec" className="flex-shrink-0">
+        <Link to="/" aria-label="Página inicial Grupo Protec" className="flex-shrink-0">
           <img 
-            src="/assets/logo_branco_cor.webp" 
+            src="src/assets/imagens/logo_branco_cor.webp" 
             alt="Grupo Desentupidora Protec" 
             width="162" 
             height="80"
             className="h-12 md:h-16 w-auto object-contain"
             loading="eager" 
-            fetchpriority="high"
+            fetchPriority="high"
           />
-        </a>
+        </Link>
 
-        {/* Desktop Navigation */}
+        {/* NAVEGAÇÃO DESKTOP */}
         <nav aria-label="Navegação Principal" className="hidden lg:flex items-center gap-8">
-          {/* Link alterado para /#sobre para fazer scroll suave na home */}
           <a href="/#sobre" className="text-white hover:text-orange-400 font-medium transition-colors text-sm uppercase tracking-wide">Empresa</a>
           
           <div className="relative group">
@@ -44,12 +58,14 @@ export default function Header() {
               Serviços <ChevronDown size={16} className="ml-1 group-hover:rotate-180 transition-transform duration-300" />
             </button>
             <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-              {/* Links apontando para as páginas SEO Pilar */}
-              <a href="/servicos/desentupidora-em-morumbi" className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600">Desentupimento Geral</a>
-              <a href="/servicos/limpa-fossa-em-morumbi" className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600">Limpeza de Fossa</a>
-              <a href="/servicos/caca-vazamento-em-morumbi" className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600">Caça Vazamento</a>
-              <a href="/servicos/encanador-em-morumbi" className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600">Serviços de Encanador</a>
-              <a href="/servicos/hidrojateamento-em-morumbi" className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600">Hidrojateamento</a>
+              
+              {/* 3. LINKS INJETADOS COM A VARIÁVEL DO BAIRRO ATUAL */}
+              <Link to={`/servicos/desentupidora-em-${bairroAtual}`} className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600">Desentupimento Geral</Link>
+              <Link to={`/servicos/limpa-fossa-em-${bairroAtual}`} className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600">Limpeza de Fossa</Link>
+              <Link to={`/servicos/caca-vazamento-em-${bairroAtual}`} className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600">Caça Vazamento</Link>
+              <Link to={`/servicos/encanador-em-${bairroAtual}`} className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600">Serviços de Encanador</Link>
+              <Link to={`/servicos/hidrojateamento-em-${bairroAtual}`} className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600">Hidrojateamento</Link>
+            
             </div>
           </div>
           
@@ -78,16 +94,20 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* MENU MOBILE */}
       <div className={`lg:hidden absolute top-full left-0 w-full bg-white shadow-xl transition-all duration-300 origin-top ${isOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 pointer-events-none'}`}>
         <div className="flex flex-col p-4 space-y-4">
           <a href="/#sobre" onClick={() => setIsOpen(false)} className="text-gray-800 font-medium text-lg border-b pb-2">Empresa</a>
           
           <div className="flex flex-col border-b pb-2 space-y-3">
             <span className="text-red-600 font-bold text-sm uppercase tracking-wider">Nossos Serviços</span>
-            <a href="/servicos/desentupidora-em-morumbi" onClick={() => setIsOpen(false)} className="text-gray-600 font-medium pl-2">Desentupimento Geral</a>
-            <a href="/servicos/limpa-fossa-em-morumbi" onClick={() => setIsOpen(false)} className="text-gray-600 font-medium pl-2">Limpeza de Fossa</a>
-            <a href="/servicos/encanador-em-morumbi" onClick={() => setIsOpen(false)} className="text-gray-600 font-medium pl-2">Serviços de Encanador</a>
+            
+            {/* 4. LINKS DO MOBILE TAMBÉM DINÂMICOS */}
+            <Link to={`/servicos/desentupidora-em-${bairroAtual}`} onClick={() => setIsOpen(false)} className="text-gray-600 font-medium pl-2">Desentupimento Geral</Link>
+            <Link to={`/servicos/limpa-fossa-em-${bairroAtual}`} onClick={() => setIsOpen(false)} className="text-gray-600 font-medium pl-2">Limpeza de Fossa</Link>
+            <Link to={`/servicos/caca-vazamento-em-${bairroAtual}`} onClick={() => setIsOpen(false)} className="text-gray-600 font-medium pl-2">Caça Vazamento</Link>
+            <Link to={`/servicos/encanador-em-${bairroAtual}`} onClick={() => setIsOpen(false)} className="text-gray-600 font-medium pl-2">Serviços de Encanador</Link>
+            <Link to={`/servicos/hidrojateamento-em-${bairroAtual}`} onClick={() => setIsOpen(false)} className="text-gray-600 font-medium pl-2">Hidrojateamento</Link>
           </div>
 
           <a href="/#faq" onClick={() => setIsOpen(false)} className="text-gray-800 font-medium text-lg border-b pb-2">Dúvidas Frequentes</a>
