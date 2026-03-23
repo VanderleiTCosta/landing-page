@@ -59,10 +59,10 @@ export default function TemplateBairro({ bairro, zona }) {
           <section className="bg-[#5c1818] py-12 md:py-24 relative overflow-hidden">
             <div className="absolute inset-0 z-0 opacity-20 mix-blend-overlay">
               <img 
-                src="/assets/servicos/background.webp" 
+                src="src/assets/imagens/logo_branco_cor.webp" 
                 alt={keyword} 
                 className="w-full h-full object-cover" 
-                fetchpriority="high"
+                fetchPriority="high"
               />
             </div>
 
