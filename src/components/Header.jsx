@@ -36,20 +36,24 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav aria-label="Navegação Principal" className="hidden lg:flex items-center gap-8">
-          <a href="/empresa" className="text-white hover:text-orange-400 font-medium transition-colors text-sm uppercase tracking-wide">Empresa</a>
+          {/* Link alterado para /#sobre para fazer scroll suave na home */}
+          <a href="/#sobre" className="text-white hover:text-orange-400 font-medium transition-colors text-sm uppercase tracking-wide">Empresa</a>
           
           <div className="relative group">
             <button className="flex items-center text-white hover:text-orange-400 font-medium transition-colors text-sm uppercase tracking-wide pb-1">
               Serviços <ChevronDown size={16} className="ml-1 group-hover:rotate-180 transition-transform duration-300" />
             </button>
             <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-              <a href="#servicos" className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600">Desentupimento</a>
-              <a href="#servicos" className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600">Limpa Fossa</a>
-              <a href="#servicos" className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600">Caça Vazamento</a>
+              {/* Links apontando para as páginas SEO Pilar */}
+              <a href="/servicos/desentupidora-em-morumbi" className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600">Desentupimento Geral</a>
+              <a href="/servicos/limpa-fossa-em-morumbi" className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600">Limpeza de Fossa</a>
+              <a href="/servicos/caca-vazamento-em-morumbi" className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600">Caça Vazamento</a>
+              <a href="/servicos/encanador-em-morumbi" className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600">Serviços de Encanador</a>
+              <a href="/servicos/hidrojateamento-em-morumbi" className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600">Hidrojateamento</a>
             </div>
           </div>
           
-          <a href="/blog" className="text-white hover:text-orange-400 font-medium transition-colors text-sm uppercase tracking-wide">Blog</a>
+          <a href="/#faq" className="text-white hover:text-orange-400 font-medium transition-colors text-sm uppercase tracking-wide">Dúvidas</a>
         </nav>
 
         {/* CTA & Mobile Toggle */}
@@ -77,10 +81,20 @@ export default function Header() {
       {/* Mobile Menu */}
       <div className={`lg:hidden absolute top-full left-0 w-full bg-white shadow-xl transition-all duration-300 origin-top ${isOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 pointer-events-none'}`}>
         <div className="flex flex-col p-4 space-y-4">
-          <a href="/empresa" className="text-gray-800 font-medium text-lg border-b pb-2">Empresa</a>
-          <a href="#servicos" className="text-gray-800 font-medium text-lg border-b pb-2">Nossos Serviços</a>
-          <a href="/blog" className="text-gray-800 font-medium text-lg border-b pb-2">Blog SEO</a>
-          <a href={whatsappLink} className="bg-green-600 text-white text-center font-bold py-3 rounded-lg mt-4">CHAMAR NO WHATSAPP</a>
+          <a href="/#sobre" onClick={() => setIsOpen(false)} className="text-gray-800 font-medium text-lg border-b pb-2">Empresa</a>
+          
+          <div className="flex flex-col border-b pb-2 space-y-3">
+            <span className="text-red-600 font-bold text-sm uppercase tracking-wider">Nossos Serviços</span>
+            <a href="/servicos/desentupidora-em-morumbi" onClick={() => setIsOpen(false)} className="text-gray-600 font-medium pl-2">Desentupimento Geral</a>
+            <a href="/servicos/limpa-fossa-em-morumbi" onClick={() => setIsOpen(false)} className="text-gray-600 font-medium pl-2">Limpeza de Fossa</a>
+            <a href="/servicos/encanador-em-morumbi" onClick={() => setIsOpen(false)} className="text-gray-600 font-medium pl-2">Serviços de Encanador</a>
+          </div>
+
+          <a href="/#faq" onClick={() => setIsOpen(false)} className="text-gray-800 font-medium text-lg border-b pb-2">Dúvidas Frequentes</a>
+          
+          <a href={whatsappLink} className="bg-green-600 text-white text-center font-bold py-3 rounded-lg mt-4">
+            CHAMAR NO WHATSAPP
+          </a>
         </div>
       </div>
     </header>
