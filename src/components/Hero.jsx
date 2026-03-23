@@ -1,61 +1,82 @@
-import { ArrowRight, Play } from 'lucide-react';
+import { PhoneCall } from 'lucide-react';
 
 export default function Hero() {
+  const whatsappLink = "https://wa.me/5511940103334";
+
   return (
-    <section id="home" className="pt-32 pb-20 bg-gradient-to-br from-blue-50 via-white to-purple-50">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <div className="inline-block bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-semibold">
-                ✨ Welcome to our platform
-              </div>
-              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
-                Build Amazing <span className="text-blue-600">Landing Pages</span>
-              </h1>
-              <p className="text-xl text-gray-600 leading-relaxed">
-                Create stunning, responsive landing pages with React and Tailwind CSS. Perfect for startups, agencies, and products.
-              </p>
-            </div>
+    <section id="home" className="relative min-h-[85vh] flex flex-col justify-center bg-gray-900">
+      {/* Background Otimizado (LCP) */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          className="w-full h-full object-cover" 
+          src="/assets/servicos/background.webp" 
+          alt="Desentupidora Profissional em Ação" 
+          fetchpriority="high"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-red-950/95 via-red-900/90 to-orange-900/80"></div>
+      </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition font-semibold flex items-center justify-center gap-2">
-                Get Started <ArrowRight size={20} />
-              </button>
-              <button className="border-2 border-gray-300 text-gray-900 px-8 py-4 rounded-lg hover:border-blue-600 hover:text-blue-600 transition font-semibold flex items-center justify-center gap-2">
-                <Play size={20} /> Watch Demo
-              </button>
-            </div>
+      <div className="relative z-10 container mx-auto px-4 max-w-7xl py-12 md:py-20">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          
+          {/* SEO Text Content */}
+          <div className="space-y-6 text-center lg:text-left">
+            <span className="inline-block bg-green-700 text-white px-5 py-1.5 rounded-full text-sm font-bold tracking-wider uppercase shadow-md">
+              Visita Técnica Gratuita
+            </span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+              Desentupidora no Morumbi <br />
+              <span className="text-orange-400">24h em São Paulo</span>
+            </h1>
+            <p className="text-lg md:text-xl text-gray-200 max-w-xl mx-auto lg:mx-0">
+              Serviço rápido, limpo e com garantia. Desentupimento de pias, ralos, esgotos e limpa fossa com equipamentos de alta tecnologia.
+            </p>
 
-            {/* Stats */}
-            <div className="flex gap-8 pt-4">
-              <div>
-                <p className="text-3xl font-bold text-gray-900">10K+</p>
-                <p className="text-gray-600 text-sm">Happy Users</p>
-              </div>
-              <div>
-                <p className="text-3xl font-bold text-gray-900">500+</p>
-                <p className="text-gray-600 text-sm">Templates</p>
-              </div>
-              <div>
-                <p className="text-3xl font-bold text-gray-900">99%</p>
-                <p className="text-gray-600 text-sm">Uptime</p>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+              <a href={whatsappLink} className="flex items-center justify-center gap-3 bg-black/40 backdrop-blur-sm border border-white/20 p-4 rounded-xl hover:border-orange-400 transition group">
+                <PhoneCall className="text-orange-400" size={24} />
+                <div className="text-left">
+                  <div className="text-orange-400 text-xs font-bold uppercase">WhatsApp 24h</div>
+                  <div className="text-xl font-bold text-white group-hover:text-orange-400 transition">(11) 94010-3334</div>
+                </div>
+              </a>
+              <a href="tel:08005919537" className="flex items-center justify-center gap-3 bg-black/40 backdrop-blur-sm border border-white/20 p-4 rounded-xl hover:border-orange-400 transition group">
+                <PhoneCall className="text-orange-400" size={24} />
+                <div className="text-left">
+                  <div className="text-orange-400 text-xs font-bold uppercase">Ligue Grátis</div>
+                  <div className="text-xl font-bold text-white group-hover:text-orange-400 transition">0800 591 9537</div>
+                </div>
+              </a>
             </div>
           </div>
 
-          {/* Right Image */}
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-2xl blur-3xl opacity-20"></div>
-            <div className="relative bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-8 text-white aspect-square flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-6xl font-bold mb-4">👨‍💻</div>
-                <p className="text-lg font-semibold">Your Amazing Hero Image Here</p>
+          {/* Lead Capture Form */}
+          <div className="w-full max-w-md mx-auto lg:ml-auto bg-white p-8 rounded-2xl shadow-2xl border-t-4 border-red-600">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Solicitar Orçamento</h2>
+            <p className="text-gray-500 mb-6 text-sm">Preencha e receba contato imediato.</p>
+            
+            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+              <div>
+                <input type="text" placeholder="Seu Nome*" required className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-600 focus:outline-none transition" />
               </div>
-            </div>
+              <div>
+                <input type="tel" placeholder="Telefone / WhatsApp*" required className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-600 focus:outline-none transition" />
+              </div>
+              <div>
+                <select required className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-600 focus:outline-none transition text-gray-700">
+                  <option value="">Selecione o problema...</option>
+                  <option value="pia">Desentupimento de Pia</option>
+                  <option value="vaso">Desentupimento de Vaso</option>
+                  <option value="esgoto">Desentupimento de Esgoto</option>
+                  <option value="outros">Outros Serviços</option>
+                </select>
+              </div>
+              <button type="submit" className="w-full bg-green-600 text-white font-bold text-lg py-4 rounded-lg hover:bg-green-700 transition shadow-md">
+                AGENDAR VISITA
+              </button>
+            </form>
           </div>
+
         </div>
       </div>
     </section>

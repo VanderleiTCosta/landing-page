@@ -1,29 +1,31 @@
-import { ArrowRight } from 'lucide-react';
+import { PhoneCall } from 'lucide-react';
 
 export default function CTA() {
+  const whatsappLink = "https://wa.me/5511940103334";
+
   return (
-    <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center space-y-8">
-          <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-            Ready to Build Your Landing Page?
+    <section className="py-24 bg-red-600 text-white relative overflow-hidden">
+      {/* Background Pattern leve */}
+      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+          <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">
+            Seu esgoto entupiu? Não quebre nada antes de nos ligar!
           </h2>
-          <p className="text-xl text-blue-100">
-            Join thousands of creators who are building amazing landing pages with our platform.
+          <p className="text-xl text-red-100 max-w-2xl mx-auto font-medium">
+            Temos viaturas de plantão no Morumbi e região prontas para te socorrer agora mesmo. Orçamento presencial sem compromisso.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-blue-600 px-8 py-4 rounded-lg hover:bg-gray-100 transition font-semibold flex items-center justify-center gap-2">
-              Start Free Trial <ArrowRight size={20} />
-            </button>
-            <button className="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:bg-opacity-10 transition font-semibold">
-              Schedule Demo
-            </button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+            <a href={whatsappLink} className="bg-green-500 text-white px-8 py-4 rounded-xl hover:bg-green-600 transition font-bold text-lg flex items-center justify-center gap-3 shadow-xl hover:-translate-y-1">
+              <PhoneCall size={24} />
+              CHAMAR VIA WHATSAPP
+            </a>
+            <a href="tel:08005919537" className="bg-white text-red-700 px-8 py-4 rounded-xl hover:bg-gray-100 transition font-bold text-lg shadow-xl hover:-translate-y-1">
+              LIGAR NO 0800
+            </a>
           </div>
-
-          <p className="text-blue-100 text-sm">
-            No credit card required. Get started in minutes.
-          </p>
         </div>
       </div>
     </section>

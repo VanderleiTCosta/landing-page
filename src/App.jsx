@@ -1,20 +1,28 @@
 import Header from './components/Header'
 import Hero from './components/Hero'
-import Features from './components/Features'
-import Pricing from './components/Pricing'
+import About from './components/About'
+import Services from './components/Services'
+import Clients from './components/Clients'
 import Testimonials from './components/Testimonials'
+import Coverage from './components/Coverage'
+import Payment from './components/Payment'
+import FAQ from './components/FAQ'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
 
 function App() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
       <Header />
-      <main>
+      <main className="flex-grow pt-[72px] md:pt-[88px]">
         <Hero />
-        <Features />
-        <Pricing />
+        <About />
+        <Services />
+        <Clients />
         <Testimonials />
+        <Coverage />
+        <Payment />
+        <FAQ />
         <CTA />
       </main>
       <Footer />
